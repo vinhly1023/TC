@@ -1,0 +1,36 @@
+# Bundler config.
+/.bundle
+
+# The default SQLite database.
+/db/*.sqlite3
+/db/*.sqlite3-journal
+
+# All logfiles and tempfiles.
+/log/*.log
+/tmp
+
+# Other unneeded files.
+doc/
+*.swp
+*~
+.project
+.DS_Store
+.idea
+.secret
+Gemfile.lock
+/.settings
+*.dmp
+
+# Report generated files.
+reports/
+
+# Machine.xml
+config/machine.xml
+
+# DB snapshots
+db/**/snapshot-data.yml
+db/**/snapshot-schema.rb
+
+# public upload folders
+public/upload/**
+public/checksum_packages/**

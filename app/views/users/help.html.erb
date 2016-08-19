@@ -1,0 +1,57 @@
+<% provide(:title, 'Help') %>
+<div class="col-xs-offset-3">
+  <div class="content-header">
+    <div class="header-inner">
+      <h2>Guides</h2>
+
+      <p class="subheader">The following links link to guide files that help us deploy and work with Test Central
+        server</p>
+    </div>
+  </div>
+  <ul>
+    <% @link_list.each do |link| %>
+      <% if link.include?('.md') %>
+        <li><%= link_to link.split('/')[-1], "/users/help/view_markdown/#{link}" %></li>
+      <% else %>
+        <li><%= link_to link.split('/')[-1], action: 'download', file: link %></li>
+      <% end %>
+    <% end %>
+  </ul>
+  <div class="content-header">
+    <div class="header-inner">
+      <h2>FAQs</h2>
+
+      <p class="subheader">The FAQs for Test Central<br/></p>
+    </div>
+  </div>
+</div>
+
+<div id="exTab1" class="container">
+  <ul class="nav nav-tabs nav-justified">
+    <% @faqs.each_with_index do |faq, index| %>
+      <li <% if index.zero? %> class="active" <% end %>>
+        <a href="#<%= faq[0].to_s %>" data-toggle="tab"><%= faq[0].to_s.titleize %></a>
+      </li>
+    <% end %>
+  </ul>
+  <div class="tab-content clearfix">
+    <% @faqs.each_with_index do |faq, index| %>
+      <div class="tab-pane<% if index.zero? %> active<% end %>" id="<%= faq[0].to_s %>">
+        <% faq[1].each do |q| %>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= q[:id] %>">Question: <%= q[:question] %></a>
+              </h4>
+            </div>
+            <div id="collapse<%= q[:id] %>" class="panel-collapse collapse">
+              <div class="panel-body">
+                Answer: <%= raw q[:answer] %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

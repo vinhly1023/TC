@@ -1,0 +1,45 @@
+<%= stylesheet_link_tag 'search' %>
+<% provide(:title, 'Audit Log') %>
+<h1>Audit Log</h1>
+
+<% unless @html.blank? %>
+  <%= form_tag({ action: 'update_limit' }, method: 'post', class: 'form-inline') do %>
+    <div class="result">
+      <div class="paging form-inline">
+        <div id="limit_log_paging_msg"></div>
+        <div class="form-group top5">
+          <%= will_paginate @activities, class: '' %>
+        </div>
+        <div class='form-group pull-right'>
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon2">Display Items</span>
+            <%= text_field_tag(:limit_log_paging, $limit_paging_items, type: 'number', min: 1, max: 100, class: 'form-control') %>
+            <span class="input-group-btn">
+              <%= submit_tag('Update',id: 'limit_log_paging_btn', class: 'btn btn-success', type: 'submit') %>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-responsive top15">
+        <table class="table">
+          <thead>
+          <tr class="highlights">
+            <td>Date</td>
+            <td>User</td>
+            <td>Details</td>
+          </tr>
+          </thead>
+          <tbody>
+          <%= @html.html_safe %>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="form-group top15">
+        <%= will_paginate @activities, class: '' %>
+      </div>
+
+    </div>
+  <% end %>
+<% end %>

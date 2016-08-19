@@ -1,0 +1,38 @@
+{
+  "US": {
+    "X-Forwarded-For": "69.90.134.10",
+    "X-LF-ATG-XFF": "69.90.134.10"
+  },
+  "CA": {
+    "X-Forwarded-For": "24.114.29.162",
+    "X-LF-ATG-XFF": "24.114.29.162"
+  },
+  "UK": {
+    "X-Forwarded-For": "2.22.246.102",
+    "X-LF-ATG-XFF": "2.22.246.102"
+  },
+  "IE": {
+    "X-Forwarded-For": "31.200.128.100",
+    "X-LF-ATG-XFF": "31.200.128.100"
+  },
+  "AU": {
+    "X-Forwarded-For": "14.192.160.100",
+    "X-LF-ATG-XFF": "14.192.160.100"
+  },
+  "ROW": {
+    "X-Forwarded-For": "37.19.10.100",
+    "X-LF-ATG-XFF": "37.19.10.100"
+  },
+  "FR_FR": {
+    "X-Forwarded-For": "31.35.100.100",
+    "X-LF-ATG-XFF": "31.35.100.100"
+  },
+  "FR_CA": {
+    "X-Forwarded-For": "24.114.29.162",
+    "X-LF-ATG-XFF": "24.114.29.162"
+  },
+  "FR_ROW": {
+    "X-Forwarded-For": "31.201.217.1",
+    "X-LF-ATG-XFF": "31.201.217.1"
+  }
+}

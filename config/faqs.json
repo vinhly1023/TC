@@ -1,0 +1,71 @@
+{
+  "dashboard": [
+    {
+      "id": "d_1",
+      "question": "How to see which environment versions that we are testing?",
+      "answer": "Go Dashboard page and find the Environments Version table."
+    },
+    {
+      "id": "d_2",
+      "question": "Where is the place that I can search test results?",
+      "answer": "Hover on the Dashboad menu, then clicking on search results."
+    }
+  ],
+  "atg": [
+    {
+      "id": "a_1",
+      "question": "How to run ATG tests?",
+      "answer": "You perform 2 steps below:<br> 1. Go to ATG -> upload ATG MOAS file. Then uploading MOAS file.<br> 2. Go to ATG -> run scripts. Select data( environment, locale, browser, test cases, ..) then clicking on <b>QUEUE</b> button."
+    },
+    {
+      "id": "a_2",
+      "question": "How to upload file data( MOAS, Server URLs, COM servers)?",
+      "answer": "Go to ATG -> upload ATG MOAS file/ upload ATG Server URLs"
+    },
+    {
+      "id": "a_3",
+      "question": "How to use the Content Platform Checker?",
+      "answer": "You must prepare two files( MOAS, Content Platform CSV)<br> 1. Go to ATG -> upload ATG MOAS file. Uploading the MOAS file.<br> 2. Go to ATG -> content platform checker. Clicking on <b>Validate</b> button after selecting the Content Platform file."
+    }
+  ],
+  "webservice": [
+
+  ],
+  "outpost":[
+    {
+      "id": "o_1",
+      "question": "How to clone an Outpost project that has sub-module project?",
+      "answer": "Use Git command<br><b>E.g. git clone --recursive http://stash.leapfrog.com/scm/sqaa/sqaauto_narnia.git</b><br>Then go to sqaauto_outpost folder, checkout to master branch <b>git checkout master</b>"
+    },
+    {
+      "id": "o_2",
+      "question": "How to update the checkout to master/branch of the sub-module repository?",
+      "answer": "Use Git command<br><b>git submodule update --remote [branch name]</b>"
+    },
+    {
+      "id": "o_3",
+      "question": "How to start an outpost?",
+      "answer": "<br>- Go to sqaauto_outpost/oupost folder, update config.xml file.<br>- Make sure to run <b>bundle</b> command at the first time.<br>- Then start command line <b>bundle exec ruby outpost_server.rb</b>"
+    }
+  ],
+  "utilities": [
+    {
+      "id": "u_1",
+      "question": "How to redeem code for an account?",
+      "answer": "Go to Utilities -> pin redemption. Clicking on <b>Redeem PINs</b> button after inputting data( enviroment, locale, email, pin's type)."
+    },
+    {
+      "id": "u_2",
+      "question": "How to link devices for an account?",
+      "answer": "Go to Utilities -> Clicking on <b>Link device</b> button after inputting data( enviroment, username, password, platform)."
+    },
+    {
+      "id": "u_3",
+      "question": "How to lookup customer?",
+      "answer": "Go to Utilities -> lookup customer. Enter email and password then clicking on <b>Lookup Customer</b> button."
+    }
+  ],
+  "user": [
+
+  ]
+}

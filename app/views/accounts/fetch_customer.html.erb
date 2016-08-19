@@ -1,0 +1,225 @@
+<% provide(:title, 'Customer Lookup') %>
+<div class="col-xs-offset-3">
+  <div class="content-header">
+    <div class="header-inner">
+      <h2>Customer Lookup</h2>
+      <p class="subheader">This page allows you to:<br/>
+        1. Lookup: customer information, children, devices and app history<br/>
+        2. Update customer information, install/remove/revoke apps<br/>
+        Note: For searching only, leave password field blank
+      </p>
+    </div>
+  </div>
+
+  <%= form_tag({ controller: 'accounts', action: 'fetch_customer' }, method: 'get', class: 'form-horizontal') do %>
+    <%= tc_radio_buttons_group :env, '* Environment', ['QA', 'STAGING', 'PROD'], @env %>
+    <%= tc_text_input_group :user_email, '* Email', @email %>
+    <%= tc_password_input_group :user_password, 'Password', '' %>
+    <%= tc_submit_tag 'Lookup Customer', class: 'js-validate-env-locale' %>
+  <% end %>
+</div>
+
+<%
+  def tc_address_group(address, index = nil)
+    id = index.to_s
+    street = address['street'].kind_of?(Hash) ? '' : address['street']['unit']
+    postal_code = address['region']['postal_code']
+    country = address['region']['country']
+    city = address['region']['city']
+    province = address['region']['province']
+    type = address['type']
+    address_types = options_for_select(
+      [
+        ['billing', 'billing'],
+        ['shipping', 'shipping'],
+        ['home', 'home'],
+        ['mailing', 'mailing']
+      ],
+      type
+    )
+
+    <<-HTML.html_safe
+      <h2 class="custom_h2">Address #{id}</h2>
+      #{tc_input_group(
+        tc_label_tag("address_type#{id}", 'type'),
+        select_tag("address_type#{id}", address_types, class: "form-control")
+      )}
+      #{text_field_tag "addr_id#{id}", address['id'], type: 'hidden' }
+      #{tc_text_input_group "street#{id}", 'street', street }
+      #{tc_text_input_group "postal#{id}", 'postal-code', postal_code }
+      #{tc_text_input_group "country#{id}", 'country', country }
+      #{tc_text_input_group "city#{id}", 'city', city }
+      #{tc_text_input_group "province#{id}", 'province', province }
+    HTML
+  end
+
+  def show_address(address)
+    if address.kind_of?(Array)
+      address.each_with_index do |el, ix|
+        tc_address_group(el, ix + 1)
+      end
+      text_field_tag :num_of_addr, address.size, type: 'hidden'
+    else
+      tc_address_group(address)
+    end
+  end
+
+  def tc_phone_group(phone, index = nil)
+    id = index.to_s
+    number = phone['number'].split('ext.')[0].strip
+    ext = phone['number'].split('ext.')[1].strip
+    type = phone['type']
+    phone_types = options_for_select(
+      [
+        ['mobile', 'mobile'],
+        ['home', 'home'],
+        ['work', 'work']
+      ],
+      type
+    )
+
+    <<-HTML.html_safe
+      <h2 class="custom_h2">Phone information #{id}</h2>
+      #{tc_text_input_group "number#{id}", 'phone', number}
+      #{tc_text_input_group "ext#{id}", 'ext.', ext}
+      #{tc_input_group(
+        tc_label_tag("phone_type#{id}", 'type'),
+        select_tag("phone_type#{id}", phone_types, class: "form-control")
+      )}
+    HTML
+  end
+
+  def show_phone(phone)
+    if phone.kind_of?(Array)
+      phone['phone'].each_with_index do |el, ix|
+        tc_phone_group(el, ix + 1)
+      end
+      text_field_tag :num_of_phones, i, type: 'hidden'
+    else
+      tc_phone_group(phone)
+    end
+  end
+%>
+
+<% def show_customer_info %>
+  <div class="col-xs-offset-3">
+    <h3 class="top15">Customer Information</h3>
+    <div id="cus_info">
+      <%= form_tag({ controller: 'accounts', action: 'update_customer' }, remote: true, method: 'post', class: 'form-horizontal') do %>
+        <div class="cus_info">
+          <%= tc_text_input_group :cus_registration_date, 'Registration date', @cus_info['customer']['registration_date'], readonly: true %>
+          <%= tc_text_input_group :cus_type, 'Type', @cus_info['customer']['type'], readonly: true %>
+          <%= tc_text_input_group :cus_id, 'Customer ID', @cus_info['customer']['id'], readonly: true %>
+          <%= tc_text_input_group :screen, 'Screen name', @cus_info['customer']['screen_name'] %>
+          <%= tc_text_input_group :locale, 'Locale', @cus_info['customer']['locale'] %>
+          <%= tc_text_input_group :alias, 'Alias', @cus_info['customer']['alias'] %>
+          <%= tc_text_input_group :salutation, 'Salutation', @cus_info['customer']['salutation'] %>
+          <%= tc_text_input_group :first_name, 'First name', @cus_info['customer']['first_name'] %>
+          <%= tc_text_input_group :middle_name, 'Middle name', @cus_info['customer']['middle_name'] %>
+          <%= tc_text_input_group :last_name, 'Last name', @cus_info['customer']['last_name'] %>
+          <%= tc_text_input_group :username, 'Username', @cus_info['customer']['credentials']['username'] %>
+          <% unless params[:user_password].to_s.empty? %>
+              <%= tc_password_input_group :password, 'Password', @cus_info['customer']['credentials']['password'] %>
+              <%= tc_text_input_group :password_hint, 'Password hint', @cus_info['customer']['credentials']['hint'], class: 'form-control' %>
+          <% end %>
+          <%= tc_text_input_group :email, 'Email', @cus_info['customer']['email'], class: 'form-control' %>
+          <% address = @cus_info['customer']['address'] %>
+          <% show_address(address) unless address.nil? %>
+          <% phone = @cus_info['customer']['phone'] %>
+          <% show_phone(phone) unless phone.nil? %>
+          <% if @editable %>
+            <div class="ajax-loader"></div>
+            <%= tc_submit_tag 'Update', onclick: '$("#cus_info .ajax-loader").show();' %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<% def show_children %>
+  <div id="children_info">
+    <h2 class="td_center">Children</h2>
+    <div class="table-responsive">
+      <div class="ajax-loader"></div>
+      <table>
+        <tr>
+          <th>#</th>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Grade</th>
+          <th>Gender</th>
+          <th>Date of birth</th>
+        </tr>
+      </table>
+    </div>
+  </div>
+<% end %>
+
+<% def show_devices %>
+  <%= form_tag({ controller: 'accounts', action: 'unlink_devices' }, remote: true, method: 'post', class: 'form-horizontal') do %>
+    <div id="devices_info">
+      <h2 class="td_center">Devices</h2>
+      <div class="table-responsive">
+        <div class="ajax-loader"></div>
+        <table>
+          <thead>
+            <tr>
+              <th><a onclick="$('#devices_info input[type=checkbox]').click();">toggle</a></th>
+              <th>#</th>
+              <th>Serial</th>
+              <th>Platform</th>
+              <th>Child ID</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="td_center submit"></div>
+    </div>
+  <% end %>
+<% end %>
+
+<% def show_app_history %>
+  <div id="app_history_info">
+    <h2 class="td_center">App history</h2>
+    <div class="table-responsive">
+      <div class="ajax-loader"></div>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>SKU</th>
+            <th>Type</th>
+            <th>Date</th>
+            <th>Device serial</th>
+            <th>Package ID</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+<% end %>
+
+<% def revoke_license %>
+  <h2 class="td_center">Revoke License <a class="small" onclick="$('#revoke_license input[type=checkbox]').click();">toggle</a></h2>
+  <%= form_tag({ controller: 'accounts', action: 'revoke_license' }, remote: true,  method: 'post', class: 'form-horizontal col-xs-offset-2') do %>
+    <div id="revoke_license" class="col-sm-offset-3"></div>
+  <% end %>
+<% end %>
+
+<% def show_customer_info_driver
+  return unless @cus_info
+  show_customer_info
+  return unless @editable
+  show_children
+  show_devices
+  show_app_history
+  revoke_license
+end %>
+
+<% show_customer_info_driver %>

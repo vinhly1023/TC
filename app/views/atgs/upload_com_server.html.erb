@@ -1,0 +1,47 @@
+<% provide(:title, 'Upload ATG Com Server') %>
+<div class="col-xs-offset-3">
+  <div class="content-header">
+    <div class="header-inner">
+      <h2>Upload ATG Com Server</h2>
+      <p class="subheader">
+        COM Server is CSV/EXCEL file with header <b>env, hostname</b> that will be supported for automation running against individual com servers
+      </p>
+    </div>
+  </div>
+
+  <div class="form-horizontal">
+    <%= form_tag({ controller: 'atgs', action: 'upload_com_server' }, method: 'post', multipart: true, class: 'form-horizontal') do %>
+      <%= tc_file_browser_group :com_server_file, 'COM Server File', { title: 'Select excel/csv COM Server file' } %>
+      <%= tc_submit_tag 'Upload File', class: 'btn btn-success' %>
+      <div class="form-group">
+        <%= raw @message %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="content-header">
+    <h2>COM Servers</h2>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table com_server_data">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Env</th>
+          <th>Hostname</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @com_server_data.each_with_index do |com_server, index| %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><%= com_server[0] %></td>
+          <td><%= com_server[1] %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+  <%= 'There is no com server in database' if @com_server_data.length == 0 %>
+</div>

@@ -1,0 +1,52 @@
+<% provide(:title, 'Upload Redeem Code') %>
+<div class="glb-loader">
+  <div></div>
+</div>
+
+<div class="col-xs-offset-3">
+  <div class="content-header">
+    <div class="header-inner">
+      <h2>Upload Redeem Code</h2>
+      <p class='subheader'>
+        This page is used to upload redeem code that will be used to purchase apps while running ATG automation testing.
+      </p>
+    </div>
+  </div>
+
+  <div class="form-horizontal">
+    <%= form_tag({ controller: 'atgs', action: 'upload_code' }, method: 'post', multipart: true, class: 'form-horizontal') do %>
+      <%= tc_radio_buttons_group :env, 'Environment', ['QA', 'PROD', 'STAGING'], 'QA' %>
+      <%= tc_select_group :pin_type, 'Platform', @pin_type %>
+      <%= tc_file_browser_group :pin_file, 'Code file', { group_class: 'code_file_cover', title: 'Import excel file name: E.g. USV1.xls' } %>
+      <%= tc_submit_tag 'Upload file', class: 'btn btn-success js-validate-env-locale js-validate-uploaded-pin' %>
+      <div class="form-group">
+        <%= raw @message %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="content-header">
+    <div>
+      <h2>
+        Available PINs
+        <small><a onclick="clean_pins();">Clean</a></small>
+      </h2>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table available_pins">
+      <thead>
+      <tr class="highlights">
+        <th>Code Type</th>
+        <th>QA</th>
+        <th>PROD</th>
+        <th>STAGING</th>
+      </tr>
+      </thead>
+      <tbody>
+      <%= raw @available_pins_html %>
+      </tbody>
+    </table>
+  </div>
+</div>

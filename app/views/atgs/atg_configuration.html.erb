@@ -1,0 +1,105 @@
+<% provide(:title, 'ATG Configuration') %>
+
+<div class="col-xs-offset-3">
+  <div class="content-header">
+    <div class="header-inner">
+      <h2>ATG Configuration</h2>
+    </div>
+  </div>
+
+  <%= form_tag({ controller: 'atgs', action: 'update_atg_data' }, method: 'get', class: 'config_atg_data') do %>
+    <div class="form-horizontal">
+      <h3>ATG Smoke Test Accounts</h3>
+
+      <div>
+        <h4 class="top15">Empty Account</h4>
+        <%= tc_text_input_group :empty_email, 'Email', @empty_acc[0] %>
+        <%= tc_password_input_group :empty_pass, 'Password', @credit_acc[1] %>
+      </div>
+      <div>
+        <h4 class="top15">Account with Credit card</h4>
+        <%= tc_text_input_group :credit_email, 'Email', @credit_acc[0] %>
+        <%= tc_password_input_group :credit_pass, 'Password', @credit_acc[1] %>
+      </div>
+      <div>
+        <h4 class="top15">Balance Account</h4>
+        <%= tc_text_input_group :balance_email, 'Email', @balance_acc[0] %>
+        <%= tc_password_input_group :balance_pass, 'Password', @balance_acc[1] %>
+      </div>
+      <div>
+        <h4 class="top15">Balance Account with Credit card</h4>
+        <%= tc_text_input_group :credit_balance_email, 'Email', @credit_balance_acc[0] %>
+        <%= tc_password_input_group :credit_balance_pass, 'Password', @credit_balance_acc[1] %>
+      </div>
+      <br>
+    </div>
+
+    <div class="form-horizontal">
+      <h3>LeapFrog Account</h3>
+
+      <div>
+        <%= tc_text_input_group :dev_acc, 'DEV', @dev_acc %>
+        <%= tc_text_input_group :dev2_acc, 'DEV2', @dev2_acc %>
+        <%= tc_text_input_group :staging_acc, 'STAGING', @staging_acc %>
+        <%= tc_text_input_group :uat_acc, 'UAT', @uat_acc %>
+        <%= tc_text_input_group :uat2_acc, 'UAT2', @uat2_acc %>
+        <%= tc_text_input_group :preview_acc, 'PREVIEW', @preview_acc %>
+        <%= tc_text_input_group :prod_acc, 'PRODUCTION', @prod_acc %>
+      </div>
+    </div>
+
+    <div class="form-horizontal">
+      <h3>PayPal Accounts</h3>
+
+      <div>
+        <h4 class="top15">US Paypal account</h4>
+        <%= tc_text_input_group :p_email_us, 'Email', @p_us_acc[0] %>
+        <%= tc_password_input_group :p_password_us, 'Password', @p_us_acc[1] %>
+      </div>
+      <div>
+        <h4 class="top15">CA Paypal account</h4>
+        <%= tc_text_input_group :p_email_ca, 'Email', @p_ca_acc[0] %>
+        <%= tc_password_input_group :p_password_ca, 'Password', @p_ca_acc[1] %>
+      </div>
+      <div>
+        <h4 class="top15">UK Paypal account</h4>
+        <%= tc_text_input_group :p_email_uk, 'Email', @p_uk_acc[0] %>
+        <%= tc_password_input_group :p_password_uk, 'Password', @p_uk_acc[1] %>
+      </div>
+      <div>
+        <h4 class="top15">IE Paypal account</h4>
+        <%= tc_text_input_group :p_email_ie, 'Email', @p_ie_acc[0] %>
+        <%= tc_password_input_group :p_password_ie, 'Password', @p_ie_acc[1] %>
+      </div>
+      <div>
+        <h4 class="top15">AU Paypal account</h4>
+        <%= tc_text_input_group :p_email_au, 'Email', @p_au_acc[0] %>
+        <%= tc_password_input_group :p_password_au, 'Password', @p_au_acc[1] %>
+      </div>
+      <div>
+        <h4 class="top15">ROW Paypal account</h4>
+        <%= tc_text_input_group :p_email_row, 'Email', @p_row_acc[0] %>
+        <%= tc_password_input_group :p_password_row, 'Password', @p_row_acc[1] %>
+      </div>
+      <br>
+    </div>
+
+    <div class="form-horizontal">
+      <h3>ATG Health Check - Vindicia Account</h3>
+
+      <div>
+        <h4 class="top15">Vindicia Account Setting</h4>
+        <%= tc_text_input_group :vin_username, 'Username', @vin_username %>
+        <%= tc_password_input_group :vin_password, 'Password', @vin_password %>
+      </div>
+      <br>
+    </div>
+    <div class="form-horizontal">
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-2">
+          <%= submit_tag('UPDATE', class: 'btn btn-success') %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

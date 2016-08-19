@@ -1,0 +1,48 @@
+.redeemed {
+  color: red;
+}
+
+.available {
+  color: green;
+}
+
+.unexistent {
+  color: gray;
+}
+
+#pins_status {
+  margin-top: 15px;
+}
+
+.fail {
+  color: red;
+}
+
+.pass {
+  color: green;
+}
+
+.invalid {
+  color: gray;
+}
+
+td {
+  padding: 5px;
+}
+
+table {
+  margin: 0 auto;
+}
+
+th,
+td {
+  padding: 0 5px;
+  text-align: left;
+  vertical-align: top;
+}
+
+th:nth-child(even),
+td:nth-child(even),
+tr:hover {
+  background-color: #f5f5f5;
+}

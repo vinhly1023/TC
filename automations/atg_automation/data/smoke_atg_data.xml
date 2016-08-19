@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<products>
+  <web_product1> <!-- Is a App that supports for all locales -->
+    <prod_id>prod58102-96914</prod_id>
+    <sku>58102-96914</sku>
+    <price>
+      <us>$10.00</us>
+      <ca>$10.00</ca>
+      <uk>£7.50</uk>
+      <ie>€9.00</ie>
+      <au>A$15.00</au>
+      <row>LF$10.00</row>
+    </price>
+    <catalog_title>KIDZ BOP Dance Party</catalog_title>
+    <cart_title>KIDZ BOP Dance Party</cart_title>
+    <pdp_title>KIDZ BOP Dance Party</pdp_title>
+    <wishlist_title>KIDZ BOP Dance Party</wishlist_title>
+  </web_product1>
+  <web_product2> <!-- Is a App that supports for all locales-->
+    <prod_id>prod58180-96914</prod_id>
+    <sku>58180-96914</sku>
+    <price>
+      <us>$10.00</us>
+      <ca>$10.00</ca>
+      <uk>£7.50</uk>
+      <ie>€9.00</ie>
+      <au>A$15.00</au>
+      <row>LF$10.00</row>
+    </price>
+    <catalog_title>Solar Taxi</catalog_title>
+    <cart_title>Solar Taxi</cart_title>
+    <pdp_title>Solar Taxi</pdp_title>
+    <wishlist_title>Solar Taxi</wishlist_title>
+  </web_product2>
+  <web_product3> <!-- Is a App that supports for all locales and it's price is greater than account balance -->
+    <prod_id>prod58655-96914</prod_id>
+    <sku>58655-96914</sku>
+    <price>
+      <us>$25.00</us>
+      <ca>$30.00</ca>
+      <uk>£20.00</uk>
+      <ie>€25.00</ie>
+      <au>A$35.00</au>
+      <row>LF$25.00</row>
+    </price>
+    <catalog_title>Little Pim Spanish: Volumes 1, 2, and 3</catalog_title>
+    <cart_title>Little Pim Spanish: Volumes 1, 2, and 3</cart_title>
+    <pdp_title>Little Pim Spanish: Volumes 1, 2, and 3</pdp_title>
+    <wishlist_title>Little Pim Spanish: Volumes 1, 2, and 3</wishlist_title>
+  </web_product3>
+  <web_product4> <!-- Is a App that supports for all locales and it's price is less than account balance -->
+    <prod_id>prod59949-96914</prod_id>
+    <sku>59982-96914</sku>
+    <price>
+      <us>$7.50</us>
+      <ca>$7.50</ca>
+      <uk>£5.00</uk>
+      <ie>€6.00</ie>
+      <au>A$10.00</au>
+      <row>LF$7.50</row>
+    </price>
+    <catalog_title>Disney Frozen: Babysitting the Troll Tots</catalog_title>
+    <cart_title>Disney Frozen: Babysitting the Troll Tots</cart_title>
+    <pdp_title>Disney Frozen: Babysitting the Troll Tots</pdp_title>
+    <wishlist_title>Disney Frozen: Babysitting the Troll Tots</wishlist_title>
+  </web_product4>
+  <device_product1>
+    <english> <!-- Is a App that supports for all English locales -->
+      <prod_id>prod58078-96914</prod_id>
+      <sku>58078-96914</sku>
+      <price>
+        <us>$10.00</us>
+        <ca>$10.00</ca>
+        <uk>£7.50</uk>
+        <ie>€9.00</ie>
+        <au>A$15.00</au>
+        <row>LF$10.00</row>
+      </price>
+      <catalog_title>Cosmic Cleanup</catalog_title>
+      <cart_title>Cosmic Cleanup</cart_title>
+      <pdp_title>Cosmic Cleanup</pdp_title>
+      <wishlist_title>Cosmic Cleanup</wishlist_title>
+    </english>
+    <french> <!-- Is a App that supports for all French locales -->
+      <prod_id>prod58078-96914</prod_id>
+      <sku>58078-96914</sku>
+      <price>
+        <fr_fr>€9.00</fr_fr>
+        <fr_ca>$10.00</fr_ca>
+        <fr_row>LF$10.00</fr_row>
+      </price>
+      <catalog_title>(ANGLAIS) La planète Goop</catalog_title>
+      <cart_title>(ANGLAIS) La planète Goop</cart_title>
+      <pdp_title>(ANGLAIS) La planète Goop</pdp_title>
+      <wishlist_title>(ANGLAIS) La planète Goop</wishlist_title>
+    </french>
+  </device_product1>
+  <device_product2>
+    <english> <!-- Is a App that supports for all English locales and it's price is greater than account balance-->
+      <prod_id>prod58655-96914</prod_id>
+      <sku>58655-96914</sku>
+      <price>
+        <us>$25.00</us>
+        <ca>$30.00</ca>
+        <uk>£20.00</uk>
+        <ie>€25.00</ie>
+        <au>A$35.00</au>
+        <row>LF$25.00</row>
+      </price>
+      <catalog_title>Little Pim Spanish: Volumes 1, 2, and 3</catalog_title>
+      <cart_title>Little Pim Spanish: Volumes 1, 2, and 3</cart_title>
+      <pdp_title>Little Pim Spanish: Volumes 1, 2, and 3</pdp_title>
+      <wishlist_title>Little Pim Spanish: Volumes 1, 2, and 3</wishlist_title>
+    </english>
+    <french> <!-- Is a App that supports for all French locales and it's price is greater than account balance-->
+      <prod_id>prod82014</prod_id>
+      <sku>59444-31214</sku>
+      <price>
+        <fr_fr>€25.00</fr_fr>
+        <fr_ca>$30.00</fr_ca>
+        <fr_row>LF$25.00</fr_row>
+      </price>
+      <catalog_title>L'imprimerie magique</catalog_title>
+      <cart_title>L'imprimerie magique</cart_title>
+      <pdp_title>L'imprimerie magique</pdp_title>
+      <wishlist_title>L'imprimerie magique</wishlist_title>
+    </french>
+  </device_product2>
+</products>

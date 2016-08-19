@@ -1,0 +1,54 @@
+<% provide(:title, 'Upload ATG Promotion Codes') %>
+<div class="col-xs-offset-3">
+  <div class="content-header">
+    <div class="header-inner">
+      <h2>Upload ATG Promotion Codes</h2>
+
+      <p class="subheader">
+        Promotion Code is a CSV/EXCEL file with headers <b>promoname, numprods, prod1, prod2, prod3, prod4...</b> that
+        will be supported for automation running against individual com servers
+      </p>
+    </div>
+  </div>
+
+  <div class="form-horizontal">
+    <%= form_tag({ controller: 'atgs', action: 'upload_promotion_code' }, method: 'post', multipart: true, class: 'form-horizontal') do %>
+      <%= tc_radio_buttons_group :env, 'Environment', ['QA', 'PROD'] %>
+      <%= tc_file_browser_group :promotion_file, 'Promotion file', { title: 'Select excel/csv promo file' } %>
+      <%= tc_submit_tag 'Upload File', class: 'btn btn-success js-validate-env-locale' %>
+      <div class="form-group">
+        <%= raw @message %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="content-header">
+    <h2>Promotion codes</h2>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table promotion_code_data">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>ENV</th>
+        <th>Code Name</th>
+        <th>Total SKU</th>
+        <th>Product number</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @promotion_data.each_with_index do |promos, index| %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><%= promos[0] %></td>
+          <td><%= promos[1] %></td>
+          <td><%= promos[2] %></td>
+          <td><%= promos[3] %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+  <%= 'There is no Promotion code in database' if @promotion_data.length == 0 %>
+</div>

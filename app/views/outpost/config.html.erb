@@ -1,0 +1,82 @@
+<%
+   provide(:title, "#{@silo.titleize.upcase} Outpost Config")
+%>
+<h2><%= @silo.titleize.upcase %> Outpost Config</h2>
+
+<div class="col-xs-offset-3">
+  <%= form_tag({ controller: 'outpost', action: 'outpost_config' }, method: 'get', class: 'form-horizontal') do %>
+    <% unless @outposts.blank? %>
+      <%= tc_radio_buttons_group :outpost, 'Outpost', @outposts, @name %>
+      <%= submit_tag('outpost', class: 'btn btn-lg btn-success hidden', id: 'reload_outpost') %>
+    <% end %>
+  <% end %>
+  <br/>
+  <%= tc_app_config(
+        'Running Setting',
+        'op_run_queue_settings_msg',
+        [
+          tc_number_input_group(:limit_running_test, 'Limit running max', @limit_running, 'test runs', min: 1, max: 99, require: ''),
+        ],
+        tc_submit_tag('Update', id: 'btn_op_run_queue_settings')
+      )
+  %>
+
+  <div class="content-header">
+    <div class="header-inner">
+      <p class='subheader'>Supported files</p>
+    </div>
+  </div>
+  <div class="form-horizontal">
+    <table class="table table-hover">
+      <thead>
+      <th>File
+        <span onclick="tc.outpost.upload('new_file')" class="btn glyphicon glyphicon-upload" data-toggle="tooltip" data-placement="top" title="Upload new file" aria-hidden="true"></span>
+      </th>
+      <th>Actions</th>
+      </thead>
+      <tbody>
+      <% @supported_file.each do |file| %>
+        <tr>
+          <td><%= file %></td>
+          <td>
+            <a href='<%= "#{@download_url}#{file}" %>' class="btn">
+              <span class="glyphicon glyphicon-download-alt" data-toggle="tooltip" data-placement="top" title="Download" aria-hidden="true"></span>
+            </a>
+            <span onclick="tc.outpost.upload('<%= file %>')" class="btn glyphicon glyphicon-upload" data-toggle="tooltip" data-placement="top" title="Upload" aria-hidden="true"></span>
+            <% if Outpost.editable? file %>
+              <span onclick="tc.outpost.loadFileContent('<%= file %>')" class="btn glyphicon glyphicon-edit" data-toggle="tooltip" data-placement="top" title="Edit" aria-hidden="true"></span>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+    <!-- Edit file Modal -->
+    <div class="modal fade bs-example-modal-lg" id="mdl_edit_file" tabindex="-1" role="dialog" aria-labelledby="Edit file" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form>
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+              <h1 class="modal-title">Edit file</h1>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <b><label id="file_name" class="lead">&nbsp;</label></b>
+                <textarea class="form-control v-resize" rows="20" id="txt_file_content"></textarea>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button id="btn_update" type="button" class="btn btn-success">Update</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <input type="hidden" id="upload_url" value="<%= @upload_url %>"/>
+    <input type="hidden" id="download_url" value="<%= @download_url %>"/>
+  </div>
+</div>

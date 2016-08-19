@@ -1,0 +1,20 @@
+<% provide(:title, 'Edit User') %>
+<div class="col-xs-offset-3">
+	<div class="content-header">
+		<div class="header-inner">
+		<h2>Edit User</h2>
+	  <p class="subheader">This page allows you to edit a user
+	  	<br/>Please leave password field empty if you don't want to change it</p>
+	  </div>
+	</div>
+	<%= form_tag({controller: 'users', action: 'edit'}, method: 'post', class: 'form-horizontal') do %>
+    <%= tc_text_input_group :email, 'Email', @user[:email], autofocus: true, readonly: true, placeholder: 'e.g. example@abc.com' %>
+	  <%= hidden_field_tag(:id, @user[:id]) %>
+    <%= tc_text_input_group :first_name, 'First name', @user[:first_name] %>
+    <%= tc_text_input_group :last_name, 'Last name', @user[:last_name] %>
+    <%= tc_password_input_group :password, 'Password' %>
+    <%= tc_select_group :role_id, 'Role', options_for_select([['Administrator', 1], ['Power User', 2], ['QA', 3]], @user[:role_id]) %>
+    <%= tc_checkbox_group_origin :is_active, 'Active', 1, @user[:is_active] %>
+    <%= tc_submit_tag 'Update' %>
+	<% end %>
+</div>

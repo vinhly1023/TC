@@ -1,0 +1,14 @@
+<%= stylesheet_link_tag 'dashboard' %>
+<% provide(:title, 'Test Results') %>
+<%
+  tc_silos = [['ATG', 'ATG'], ['WS', 'Web Services']]
+  tc_silos += [['TC', 'Test Central']] if session[:user_role].to_i == 1
+  silo_options = tc_silos + @outpost_silos
+%>
+
+<div class="run">
+  <div class="text-center" id="view_result">
+    <%= tc_radio_buttons :silo, silo_options, @selected_silo %>
+  </div>
+  <div id="view_result_component"></div>
+</div>

@@ -1,0 +1,66 @@
+// Place all the styles related to the accounts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.manual {
+  display: none;
+}
+
+table {
+  margin: 0 auto;
+}
+
+td,
+th {
+  padding: 0 5px;
+  text-align: left;
+  vertical-align: top;
+}
+
+th:nth-child(even),
+td:nth-child(even),
+tr:hover {
+  background-color: #f5f5f5;
+}
+
+.custom_h2 {
+  font-size: 1.2em;
+  letter-spacing: -1px;
+  text-align: center;
+  font-weight: normal;
+  margin-bottom: 10px;
+  color: #999999;
+  width: 460px;
+}
+
+#revoke_license {
+  label {
+    display: block;
+    cursor: pointer;
+  }
+  label:hover {
+    background-color: #DBEAE3;
+  }
+}
+
+.td_center {
+  text-align: center;
+}
+
+#children_info div.table-responsive,
+#devices_info div.table-responsive,
+#app_history_info div.table-responsive,
+#revoke_license,
+#cus_info .cus_info {
+  position: relative;
+}
+
+.ajax-loader {
+  position: absolute;
+  background: url("ajax-loader.gif") no-repeat center;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  display: none;
+}

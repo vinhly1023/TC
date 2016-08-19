@@ -1,0 +1,47 @@
+<% provide(:title, 'Upload ATG Server URL file') %>
+<div class="col-xs-offset-3">
+  <div class="content-header">
+    <div class="header-inner">
+      <h2>Upload ATG server url information</h2>
+      <p class='subheader'>
+        ATG Server URL is CSV/EXCEL file with header <b>env, URL</b> that will be supported for checking ATG servers alive
+      </p>
+    </div>
+  </div>
+
+  <div class="form-horizontal">
+    <%= form_tag({ controller: 'atgs', action: 'upload_server_url' }, method: 'post', multipart: true, class: 'form-horizontal') do %>
+        <%= tc_file_browser_group :server_url_file, 'Server URL File', { title: 'Import csv server url file' } %>
+        <%= tc_submit_tag 'Upload File', class: 'btn btn-success' %>
+        <div class="form-group">
+          <%= raw @message %>
+        </div>
+    <% end %>
+  </div>
+
+  <div class="content-header">
+    <h2>Uploaded server url</h2>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table server_url_data">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Env</th>
+        <th>URL</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @server_url_data.each_with_index do |server_url, index| %>
+          <tr>
+            <td><%= index + 1 %></td>
+            <td><%= server_url[0] %></td>
+            <td><%= server_url[1] %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+  <%= 'There is no server url file in database' if @server_url_data.length == 0 %>
+</div>
